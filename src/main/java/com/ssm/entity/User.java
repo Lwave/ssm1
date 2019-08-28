@@ -82,4 +82,18 @@ public class User {
     public void setFacepath(String facepath) {
         this.facepath = facepath == null ? null : facepath.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", loginname='" + loginname + '\'' +
+                ", password='" + password + '\'' +
+                ", status=" + status +
+                ", createdate=" + createdate +
+                ", username='" + username + '\'' +
+                ", faceurl='" + faceurl + '\'' +
+                ", facepath='" + facepath + '\'' +
+                '}';
+    }
 }

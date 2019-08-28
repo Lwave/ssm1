@@ -5,5 +5,9 @@
 </head>
 <body>
 数量:${num}
+<br>
+用户:${user}
+<br>
+所有用户:${u}
 </body>
 </html>
