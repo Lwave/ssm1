@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -50,8 +49,43 @@ public class EchartsController {
         System.out.println(num1);
         map2.put("value", num1);
         ls.add(map2);
-
-
         return ls;
     }
+
+    @RequestMapping("/bar")
+    public String bar1() {
+        return "bar";
+    }
+
+    @RequestMapping(value = "/bar", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Map<String, Object>> bar2() {
+        List<Map<String, Object>> ma = new ArrayList<>();
+        UserExample userExample = new UserExample();
+        userExample.setDistinct(true);
+        userExample.setOrderByClause("createdate desc");//日期降序
+        List<UserExample.Criteria> oredCriteria = userExample.getOredCriteria();
+        UserExample.Criteria or = userExample.or();
+        //String---->Date
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        long count = userService.getCount(userExample);
+
+        //每一组数据---一个Map对象
+        HashMap<String, Object> map1 = new HashMap<>();
+        map1.put("name", "日期");
+    /*    map1.put("value", );*/
+
+        HashMap<String, Object> map2 = new HashMap<>();
+        ma.add(map2);
+
+        HashMap<String, Object> map3 = new HashMap<>();
+        ma.add(map3);
+
+        HashMap<String, Object> map4 = new HashMap<>();
+        ma.add(map4);
+
+        return ma;
+
+    }
+
 }

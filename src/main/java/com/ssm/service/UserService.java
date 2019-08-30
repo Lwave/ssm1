@@ -15,4 +15,8 @@ public interface UserService {
     User select(Integer id);
 
     List<User> selectAll(UserExample example);
+
+    int insert(List<User> user);
+
+    List<User> selectByAll(UserExample example);
 }

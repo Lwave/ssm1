@@ -11,8 +11,9 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
-@Autowired
+    @Autowired
     UserMapper userMapper;
+
     @Override
     public long getCount(UserExample example) {
         return userMapper.countByExample(example);
@@ -30,6 +31,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> selectAll(UserExample example) {
+        return userMapper.selectByExample(example);
+    }
+
+    @Override
+    public int insert(List<User> users) {
+        int n = 0;
+        for (User user : users) {
+            n = userMapper.insertSelective(user);
+        }
+        return n;
+    }
+
+    @Override
+    public List<User> selectByAll(UserExample example) {
         return userMapper.selectByExample(example);
     }
 
